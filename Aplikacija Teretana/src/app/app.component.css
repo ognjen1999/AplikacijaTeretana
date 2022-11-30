@@ -1,0 +1,129 @@
+
+.container{
+    position: relative;
+}
+
+.show-btn{
+    position: absolute;
+    top: 35px;
+    right: 25px;
+}
+
+.container nav div a{
+    text-decoration: none;
+    color: black;
+    padding: 3px 5px;
+    border: 1px solid #888;
+    font-size: 30px;
+    margin-right: 15px;
+    box-shadow: 0px 0px 0px;
+    transition: 400ms;
+}
+
+.container nav div a:hover{
+    border: 1px solid #000;
+}
+
+.container nav{
+    margin: 20px 0px;
+}
+
+a.active{
+    color: white !important;
+    background: black;
+    box-shadow: 0px 5px 15px black !important;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background: #555;
+    color: white;
+    padding: 6px 0px;
+}
+
+.background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    animation: change 50s infinite ease-in-out;
+}
+
+.background>*{
+   background-color: white;
+}
+
+button.admin-login{
+    position: fixed;
+    top: 5px;
+    right: 5px;
+    background: transparent !important;
+    color: rgb(111, 9, 26);
+}
+button.admin-login:hover{
+    color: red;
+    outline: 1px solid red;
+}
+
+section{
+    position: relative;
+}
+section .counter{
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 20px;
+    height: 20px;
+    display: grid;
+    border-radius: 50%;
+    place-items: center;
+    background: #222;
+    color: #fff;
+}
+
+.expiredUsers{
+    position: relative;
+}
+.expiredUsers p{
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    display: grid;
+    border-radius: 50%;
+    place-items: center;
+    background: #222;
+    color: #fff;
+}
+
+
+@keyframes change{
+    0%{
+        background-image: url(https://libertadbajopalabra.com/wp-content/uploads/2021/11/PES.jpg);
+    }
+    20%{
+        background-image: url(https://gymtown.rs/wp-content/uploads/2022/03/Gym-Town-2-3.jpg);
+    }
+    40%{
+        background-image: url(https://s1.1zoom.me/b5854/791/Bodybuilding_Men_511666_1920x1080.jpg);
+    }
+    60%{
+        background-image: url(https://images.alphacoders.com/692/692039.jpg);
+    }
+    80%{
+        background-image: url(https://wallpaper.dog/large/20480578.jpg);
+    }
+    100%{
+        background-image: url(https://libertadbajopalabra.com/wp-content/uploads/2021/11/PES.jpg);
+    }
+}

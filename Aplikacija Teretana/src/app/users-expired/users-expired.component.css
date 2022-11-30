@@ -1,0 +1,12 @@
+main{
+    height: 550px;
+    background: white;
+}
+main h1{
+    font-style: italic;
+    opacity: .7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,17 @@
+<div id="piechart_3d" class="border border-dark">
+</div>
+<section class="row my-2">
+    <article class="col-md-6">
+        <div>Ukupna cifra duznika: {{ukupnaCifraDuznika}} Dinara</div>
+    </article>
+    <article class="col-md-6 mb-2">
+        <div>Trenutna mesecna clanarina: <span *ngIf="!editCurrentPrice">{{trenutnaCenaClanarine}}</span> <span>
+            <input #newValue (keyup.enter)="PromeniCenuClanarine(newValue.value)" *ngIf="editCurrentPrice"
+             [value]="trenutnaCenaClanarine" type="text"></span>
+
+            <button type="button" (click)="toggleEditCurrentPrice()" class="mx-1 btn btn-sm btn-primary">
+                <i class="bi bi-pencil-square"></i>
+            </button>
+        </div>
+    </article>
+</section>

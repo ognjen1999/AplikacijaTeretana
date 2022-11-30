@@ -1,0 +1,16 @@
+form .form-group{
+    padding: 7px 5px;
+}
+
+section article{
+    border-right: 1px solid black;
+}
+
+footer{
+    text-align: center;
+    display: grid;
+    place-items: center;
+    padding: 8px 0px 0px;
+    background-color: #333;
+    color: white;
+}

@@ -1,0 +1,73 @@
+<section>
+    <div class="row">
+        <article class="col-md-6">
+            <form [formGroup]="clanarineFormGroup" #form="ngForm" (ngSubmit)="onSubmit(form)">
+                <h3>Dodaj nove clanove</h3>
+                <div class="form-group">
+                    <label for="name">Ime</label>
+                    <input placeholder="ime, nadimak ili puno ime" formControlName="name" id="name" type="text" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label>Mesecna clanarina</label>
+                    <input type="number" formControlName="monthlyMembershipFee" placeholder="00" class="form-control w-25">
+                </div>
+
+                <div class="form-group">
+                    <label>Broj mobilnog telefona</label>
+                    <input type="text" formControlName="phoneNum" placeholder="(000) 000 0000" mask="(000) 000 0000" class="form-control">
+                </div>
+                <button class="btn btn-sm btn-secondary">Potvrdi</button>
+            </form>
+        </article>
+        <article class="col-md-6">
+            <div class="d-flex navbar">
+                <input [(ngModel)]="onSearch" placeholder="Pretraga" type="text" class="form-control w-75">
+                <button *ngIf="!timeMode" (click)="toggleTimeMode()" class="btn btn-sm btn-success">Pokazi sate</button>
+                <button *ngIf="timeMode" (click)="toggleTimeMode()" class="btn btn-sm btn-danger">Sakri sate</button>
+            </div>
+            <form [formGroup]="clanarineFormGroupEdit" #forma="ngForm" (ngSubmit)="finishEditing(forma)">
+            <div class="card mb-2 py-2 px-1" *ngFor="let clanarina of listaClanarine | filter:onSearch
+            | paginate:{
+                itemsPerPage:3,
+            currentPage:page,
+            totalItems:totalRecords,
+            id:'list_pagination'
+        };">
+                <div style="place-items: center;">Ime:
+                    <span *ngIf="clanarina == editUserObject"><input formControlName="name" type="text"></span>
+                     <span *ngIf="clanarina !== editUserObject"> {{clanarina.name}} </span>
+                </div>
+                <div>
+                    Broj telefona:
+                    <span *ngIf="clanarina !== editUserObject">{{clanarina.phoneNum}}</span>
+                    <span *ngIf="clanarina == editUserObject"><input formControlName="phoneNum" class="my-1" type="text"></span>
+                </div>
+                <div>
+                    Uplaceno meseci
+                    <input type="number" formControlName="monthlyMembershipFee" *ngIf="clanarina == editUserObject">
+                     <span *ngIf="clanarina !== editUserObject"> {{clanarina.monthlyMembershipFee}} </span>
+                </div>
+                <div *ngIf="!timeMode">Datum zapocetog treninga: {{clanarina.dateForShow | date}}</div>
+                <div *ngIf="timeMode">Datum zapocetog treninga: {{clanarina.dateForShow | date:"medium"}}</div>
+               
+                <button type="button" (click)="removeUser(clanarina.id)" title="obrisi" class="btn btn-sm btn-danger remove_btn">
+                    <i class="bi bi-trash"></i>
+                </button>
+                  <button type="button" (click)="startEditingUser(clanarina.id)" title="updatuj" class="btn btn-sm btn-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                    
+                    <button *ngIf="clanarina == editUserObject" type="submit" style="color: limegreen;" class="update_btn btn btn-sm">
+                       <i class="bi bi-calendar2-check-fill"></i>
+                </button>
+            </div>
+        </form>
+        </article>
+        <footer>
+            <div>
+                <pagination-controls id="list_pagination" (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </footer>
+    </div>
+</section>

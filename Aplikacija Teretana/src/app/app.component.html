@@ -1,0 +1,71 @@
+<!-- <h1>{{today}}</h1> -->
+<div class="background">
+  <section>
+
+    <button (click)="goLoginAdmin()" class="admin-login">
+    <i class="bi bi-person-circle"></i>
+  </button>
+
+    <p class="counter">{{counter}}</p>
+  </section>
+  <div class="container mt-4">
+
+    
+  <nav *ngIf="!showProgram" class="nav navbar">
+    <section class="nav">
+
+      <div *ngIf="!adminMode" class="nav">
+        
+        <div>
+          <a routerLinkActive="active" [routerLink]="'Clanarina/EvidencijaClanarine'">Clanarine</a>
+      </div>
+      <div>
+        <a routerLinkActive="active" [routerLink]="'zapisDolaska/zapisDolaska'">Zapis Dolaska</a>
+    </div>
+    <div>
+      <a routerLinkActive="active" [routerLink]="'duznici/duznici'">Duznici</a>
+    </div>
+
+    <div class="mx-5 my-2">
+      Mesecna clanarina: <strong>{{mesecnaClanarina}} dinara</strong>
+    </div>
+
+  </div>
+    <div *ngIf="adminMode" class="nav navbar">
+<article class="d-flex">
+
+  <div>
+    <button class="btn btn-secondary mt-1 mx-3" routerLinkActive="active" routerLink="evidencija-prometa" 
+    [disabled]="!admin.adminToken"
+    >Evidencija Prometa
+  </button>
+</div>
+
+<div>
+  <a routerLinkActive="active" routerLink="login-admin">Login</a>
+</div>
+</article>
+
+<article class="mx-5 expiredUsers">
+  <p>{{counter}}</p>
+  <button (click)="checkUsersExpired()" routerLinkActive="active"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+  </svg></button>
+</article>
+</div>
+
+  </section>
+  <div>
+    <a *ngIf="!showProgram" (click)="toggleShowHideProgram()" routerLinkActive="active" class="home" routerLink=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-fill" viewBox="0 0 16 16">
+      <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+    </svg></a>
+  </div>
+</nav>
+<button *ngIf="showProgram" (click)="toggleShowHideProgram()" class="show-btn btn btn-warning"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high-fill" viewBox="0 0 16 16">
+  <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+</svg></button>
+  
+  <router-outlet></router-outlet>
+  <footer *ngIf="!showProgram">&copy;copyright Aplikacija Teretana; <small>Made by:<i> Ognjen Tepic +381 69 003 0971</i> </small> </footer>
+</div>
+</div>

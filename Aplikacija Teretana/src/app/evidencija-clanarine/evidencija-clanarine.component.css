@@ -1,0 +1,45 @@
+article:nth-child(1){
+    border-right: 1px solid black;
+}
+button{
+    margin-top: 8px;
+}
+
+
+.remove_btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.btn-primary{
+    position: absolute;
+    bottom: 5px;
+    right: 50px;
+}
+
+.update_btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    margin: 5px 90px;
+}
+
+footer{
+    text-align: center;
+    display: grid;
+    place-items: center;
+    padding: 8px 0px 0px;
+    background-color: #333;
+    color: white;
+}
+
+.btn-warning{
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    display: inline-block;
+}

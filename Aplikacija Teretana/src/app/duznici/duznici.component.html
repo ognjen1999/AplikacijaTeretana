@@ -1,0 +1,73 @@
+<section>
+    <div class="row">
+        
+        <article class="col-md-6">
+            
+            <form #form="ngForm" [formGroup]="duzniciFormBuilderAdd" (ngSubmit)="dodajDuznike(form); name.value=debit.value=whatHeTook.value=''">
+                <h3>Dodaj nove duznike</h3>
+                <div class="form-group">
+                    <label for="name">Ime</label>
+                    <input #name formControlName="name" (keydown)="perventWhiteSpace($event)" placeholder="Ime, nadimak ili puno ime." formControlName="name" ngModel type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="debit">Zaduzenje</label>
+                    <input #debit formControlName="debit" (keydown)="perventWhiteSpace($event)" placeholder="Ukupno zaduzenje" formControlName="debit" ngModel class="form-control" type="text">
+                </div>
+                
+                <div class="form-group">
+                    <textarea #whatHeTook formControlName="whatHeTook" (keydown)="perventWhiteSpace($event)" (resize)="false" placeholder="Ukucaj sta je uzeo" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-sm btn-secondary">Potvrdi</button>
+
+            </form>
+        </article>
+        <article class="col-md-6 p-2">
+            <div class="button-container mb-2 navbar">
+            <input (keydown)="perventWhiteSpace($event)" type="text" placeholder="search by name" class="form-control w-75" [(ngModel)]="findUser">
+                <button class="btn btn-sm btn-secondary">Soriraj</button>
+                <button *ngIf="!showLessDate" class="btn btn-sm btn-success" (click)="promeniDate()">Pokazi sate</button>
+                <button *ngIf="showLessDate" class="btn btn-sm btn-danger" (click)="promeniDate()">Sakri sate</button>
+            </div>
+        
+            <form [formGroup]="duzniciFormBuilderEdit" (ngSubmit)="onSubmitEditUser(f)" #f="ngForm">
+                <div style="padding: 5px 15px; margin: 5px 0px;" class="my-3 iscitavanjeDuznika" 
+                *ngFor="let duznik of duznici | filter:findUser 
+                | paginate:{
+                    itemsPerPage:4,
+                currentPage:page,
+                totalItems:totalRecords,
+                id:'list_pagination'
+            }; index as i" class="card">
+
+
+                <section>
+                    <div>Ime: <span *ngIf="enableEditObject == duznik"> <input placeholder="Novo ime" formControlName="name" type="text"> </span> <span *ngIf="enableEditObject !== duznik">{{duznik.name}}</span></div>
+                    <div>Duzan: <span *ngIf="enableEditObject == duznik"> <input class="my-1" placeholder="Novo zaduzenje" formControlName="debit" type="number"> </span> <span *ngIf="enableEditObject !== duznik">${{duznik.debit}}</span></div>
+                </section>
+                <section>
+                    <div>Uzeo je: <span *ngIf="enableEditObject == duznik"> <input placeholder="Sta je uzeo ?" formControlName="whatHeTook" type="text"> </span> <span *ngIf="enableEditObject !== duznik"> {{duznik.whatHeTook}} </span> </div>
+                    <div *ngIf="showLessDate">Datum kad se zaduzio: <span> {{duznik.date | date:'medium'}}</span></div>
+                    <div *ngIf="!showLessDate">Datum kad se zaduzio: <span> {{duznik.date | date}}</span></div>
+                </section>
+                <button type="button" title="obrisi duznika" class="btn btn-sm btn-danger remove_btn" (click)="obrisiDuznika(duznik.id)">
+                <i class="bi bi-trash"></i></button>
+                  <button type="button" (click)="chosenObjectForEdit(duznik.id)" title="updatuj duznika" class="btn btn-sm btn-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                    
+                    <button *ngIf="enableEditObject == duznik" type="submit" style="color: limegreen;" class="update_btn btn btn-sm">
+                    <i class="bi bi-calendar2-check-fill"></i>
+                </button>
+            </div>
+        </form>
+    
+
+        </article>
+        <footer>
+            <div>
+                <pagination-controls id="list_pagination" (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </footer>
+    </div>
+</section>

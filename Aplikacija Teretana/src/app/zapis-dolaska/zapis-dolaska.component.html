@@ -1,0 +1,47 @@
+<section>
+        <div class="row">
+        <h3>Zapis dolaska</h3>
+        <article class="col-md-6">
+            <div class="card">
+                <form [formGroup]="zapisDolaskaBuilder" (ngSubmit)="zapisiDolazakKorisnika(form); ime.value=''" #form="ngForm">
+                    <div class="form-group px-2 py-3">
+                        <label for="ime">Ime</label>
+                        <input #ime placeholder="Ime" required formControlName="name" type="text" class="form-control">
+                    </div>
+                    <button class="btn btn-sm btn-secondary" type="submit">Potvrdi</button>
+                </form>
+            </div>
+        </article>
+
+        <article class="col-md-6">
+
+                <div class="d-flex">
+                    <input [(ngModel)]="onSearch" placeholder="Pretrazite datum" type="text" class="form-control w-75">
+                    <button *ngIf="sati" class="btn btn-sm btn-danger mx-2" (click)="PokaziSate()">Sakri vreme</button>
+                    <button *ngIf="!sati" class="btn btn-sm btn-success mx-2" (click)="PokaziSate()">Pokazi vreme</button>
+                </div>
+            <main class="my-3">
+           
+
+                <div *ngFor="let listaGrupa of listaDolaskaVezbacaGrupisano | filterDate:onSearch | sort:['date'] | paginate:{
+                    itemsPerPage:4,
+                    currentPage:page,
+                    totalItems:totalRecords,
+                    id: 'list_pagination'
+                }">
+                    <strong>Datum: {{listaGrupa.date}}</strong>
+                    <div *ngFor="let lista of listaGrupa.listaDolazakaVezbaca | sort:['date']; index as i">
+                        <div class="d-inline">{{i+1}}.</div>
+                        <div class="d-inline"> {{lista.name}}</div>
+                        <div *ngIf="sati" class="d-inline"> <small><i class="text-danger"> {{lista.time}}</i></small></div>
+                    </div>
+                </div>
+            </main>
+        </article>
+    </div>
+    <footer>
+        <div>
+            <pagination-controls id="list_pagination" (pageChange)="page = $event"></pagination-controls>
+        </div>
+    </footer>
+    </section>

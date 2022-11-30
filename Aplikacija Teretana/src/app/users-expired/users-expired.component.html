@@ -1,0 +1,29 @@
+<h3>Ovde se nalaze clanovi cije su clanarine istekle</h3>
+<main>
+
+    <table class="table table-hover text-center">
+        <thead>
+            <tr>
+            <th>Puno ime</th>
+            <th>Broj Telefona</th>
+            <th>Broj meseci clanarine</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let expiredUser of usersExpiredList">
+            <td>{{expiredUser.name}}</td>
+            <td>{{expiredUser.phoneNum}}</td>
+            <td>
+                {{expiredUser.monthlyMembershipFee}}
+            </td>
+            <td>
+                <button type="button" title="obrisi duznika" class="btn btn-sm btn-danger remove_btn" (click)="removeUser(expiredUser.id)">
+                    <i  class="bi bi-trash"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<h1 *ngIf="usersExpiredList == ''">Trenutno lista je prazna</h1>
+        </main>

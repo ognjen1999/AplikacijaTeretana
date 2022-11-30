@@ -1,0 +1,49 @@
+section .row article:nth-child(1){
+    border-right: 1px solid black;
+    padding: 10px 10px;
+}
+
+section .row article .form-group{
+    margin: 20px 0px;
+}
+section .row article{
+    position: relative;
+}
+
+.remove_btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+footer{
+    text-align: center;
+    display: grid;
+    place-items: center;
+    padding: 8px 0px 0px;
+    background-color: #333;
+    color: white;
+}
+textarea{
+    resize: none;
+}
+
+.button-container{
+    text-align: right;
+}
+
+.btn-primary{
+    position: absolute;
+    bottom: 5px;
+    right: 50px;
+}
+
+.update_btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    margin: 5px 90px;
+}

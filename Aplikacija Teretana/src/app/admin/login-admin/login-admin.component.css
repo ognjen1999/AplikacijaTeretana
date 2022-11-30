@@ -1,0 +1,57 @@
+.smiley{
+    width: 90px;
+    height: 90px;
+    background: red;
+    border-radius: 50%;
+    position: relative;
+    transition: 300ms;
+    display: block;
+    margin: auto;
+}
+
+.smiley::before{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    top: 20px;
+    left: 10px;
+    box-shadow: 40px 0px white;
+}
+
+.smiley::after{
+    content: '';
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    background: white;
+    width: 60px;
+    height: 10px;
+    transition: 600ms;
+}
+
+.smiley.laughting{
+    background: yellowgreen;
+}
+
+.smiley.laughting::after{
+    height: 20px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+form{
+    min-height: 500px;
+    display: block;
+    margin: auto;
+    z-index: 10;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 5px 15px white;
+}
+
+main{
+    padding: 5px;
+    background: linear-gradient(30deg, black 0% 29.8%, yellowgreen 29.8% 29.9%, red 29.9% 79.8%, yellowgreen 79.8% 79.9%, black 79.9% 100%)
+}
