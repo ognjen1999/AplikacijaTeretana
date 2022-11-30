@@ -1,4 +1,4 @@
-# ognjen-tepic
+# AplikacijaTeretana
 
 this application is intended to be used in gyms at the reception.
 
